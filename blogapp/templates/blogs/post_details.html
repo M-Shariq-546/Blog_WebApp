@@ -1,0 +1,23 @@
+{% extends "blogs/base.html"%}
+{% block content %}
+        <article class="media content-section">
+            <div class="media-body">
+            <div class="article-metadata">
+            <h2 class="mr-2">{{ object.author }}</h2>
+            <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+            </div>
+            <h2 class="article-title" >{{ object.title }}</h2>
+            <p class="article-content">{{ object.content }}</p>
+            <div>
+                {% if object.author == user %}
+            <div class="form-group">
+            <a href="{% url 'post-update' object.pk %}"><button class="btn  btn-outline-success" type="submit">Update Your Post</button>
+        </div>
+        <div class="form-group">
+            <a href="{% url 'post-delete' object.pk %}"><button class="btn  btn-outline-danger" type="submit">delete this Post</button></a>
+        </div>
+        {% endif %}
+            </div>
+            </div>
+            </article>
+{% endblock content %}
